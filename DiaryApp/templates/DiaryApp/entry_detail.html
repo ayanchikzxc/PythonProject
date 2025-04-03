@@ -1,0 +1,7 @@
+{% extends "DiaryApp/base.html" %}
+{% block content %}
+    <h2>{{ entry.title }}</h2>
+    <p>{{ entry.content }}</p>
+    <a class="btn btn-warning" href="{% url 'edit_entry' entry.id %}">Edit</a>
+    <a class="btn btn-danger" href="{% url 'delete_entry' entry.id %}">Delete</a>
+{% endblock %}
