@@ -38,3 +38,4 @@ def delete_entry(request, entry_id):
         return redirect('index')
     return render(request, 'DiaryApp/entry_detail.html', {'entry': entry})
 
+
