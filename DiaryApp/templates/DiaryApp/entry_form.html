@@ -1,10 +1,10 @@
 {% extends 'DiaryApp/base.html' %}
+
 {% block content %}
-    <h2>{% if form.instance.pk %}Edit Entry{% else %}New Entry{% endif %}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Save</button>
-        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
-    </form>
+<h2>New Diary Entry</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
 {% endblock %}

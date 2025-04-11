@@ -1,4 +1,5 @@
 {% extends 'DiaryApp/base.html' %}
+
 {% block content %}
     <a href="{% url 'create_entry' %}" class="btn btn-primary mb-3">New Entry</a>
     <ul class="list-group">
@@ -6,6 +7,7 @@
         <li class="list-group-item">
             <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
             <small class="text-muted">({{ entry.created_at|date:"d M Y H:i" }})</small>
+            <p><strong>Mood:</strong> {{ entry.mood }}</p>
         </li>
         {% empty %}
         <li class="list-group-item">No entries found.</li>
