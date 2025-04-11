@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="week 11 work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryProject/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="week 11 work" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +84,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743668307196</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="week 11 work">
+      <option name="closed" value="true" />
+      <created>1744276322360</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744276322360</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
