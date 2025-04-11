@@ -1,12 +1,14 @@
-{% extends "DiaryApp/base.html" %}
+{% extends 'DiaryApp/base.html' %}
 {% block content %}
-    <h2>My Diary Entries</h2>
+    <a href="{% url 'create_entry' %}" class="btn btn-primary mb-3">New Entry</a>
     <ul class="list-group">
         {% for entry in entries %}
-            <li class="list-group-item">
-                <a href="{% url 'view_entry' entry.id %}">{{ entry.title }}</a>
-                <span class="text-muted">({{ entry.date }})</span>
-            </li>
+        <li class="list-group-item">
+            <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
+            <small class="text-muted">({{ entry.created_at|date:"d M Y H:i" }})</small>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No entries found.</li>
         {% endfor %}
     </ul>
 {% endblock %}

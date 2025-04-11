@@ -1,7 +1,13 @@
-{% extends "DiaryApp/base.html" %}
+{% extends 'DiaryApp/base.html' %}
 {% block content %}
     <h2>{{ entry.title }}</h2>
     <p>{{ entry.content }}</p>
-    <a class="btn btn-warning" href="{% url 'edit_entry' entry.id %}">Edit</a>
-    <a class="btn btn-danger" href="{% url 'delete_entry' entry.id %}">Delete</a>
+    <p><strong>Created:</strong> {{ entry.created_at }}</p>
+    <p><strong>Last updated:</strong> {{ entry.updated_at }}</p>
+    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-warning">Edit</a>
+    <form method="post" action="{% url 'delete_entry' entry.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{% url 'index' %}" class="btn btn-link">← Back</a>
 {% endblock %}
