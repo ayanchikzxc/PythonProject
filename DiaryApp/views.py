@@ -26,7 +26,7 @@ def edit_entry(request, entry_id):
         form = DiaryEntryForm(request.POST, instance=entry)
         if form.is_valid():
             form.save()
-            return redirect('entry_detail', entry_id=entry.id)
+            return redirect('entry_detail', entry_id=entry.id)  # <-- важная часть
     else:
         form = DiaryEntryForm(instance=entry)
     return render(request, 'DiaryApp/entry_form.html', {'form': form})

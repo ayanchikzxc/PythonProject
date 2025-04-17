@@ -1,16 +1,22 @@
 {% extends 'DiaryApp/base.html' %}
 
 {% block content %}
-    <a href="{% url 'create_entry' %}" class="btn btn-primary mb-3">New Entry</a>
-    <ul class="list-group">
-        {% for entry in entries %}
-        <li class="list-group-item">
-            <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
-            <small class="text-muted">({{ entry.created_at|date:"d M Y H:i" }})</small>
-            <p><strong>Mood:</strong> {{ entry.mood }}</p>
-        </li>
-        {% empty %}
-        <li class="list-group-item">No entries found.</li>
-        {% endfor %}
-    </ul>
+  <h2>All Diary Entries</h2>
+  <a href="{% url 'create_entry' %}" class="btn btn-primary mb-3">➕ New Entry</a>
+
+  <ul class="list-group">
+    {% for entry in entries %}
+      <li class="list-group-item">
+        <h5>
+          <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
+          <small class="text-muted">({{ entry.created_at|date:"d M Y H:i" }})</small>
+        </h5>
+        <p><strong>Mood:</strong> {{ entry.get_mood_display }}</p>
+        <p>{{ entry.content|truncatewords:20 }}</p>
+        <a class="btn btn-sm btn-outline-secondary" href="{% url 'entry_detail' entry.id %}">View</a>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No entries found.</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

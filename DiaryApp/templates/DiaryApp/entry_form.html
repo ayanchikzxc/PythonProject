@@ -1,10 +1,14 @@
 {% extends 'DiaryApp/base.html' %}
 
 {% block content %}
-<h2>New Diary Entry</h2>
-<form method="post">
+  <h2>{{ form.instance.pk|yesno:"Edit Diary Entry,New Diary Entry" }}</h2>
+
+  <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-success">Save</button>
-</form>
+  </form>
+
+  <br>
+  <a class="btn btn-light" href="{% url 'index' %}">← Back to all entries</a>
 {% endblock %}
