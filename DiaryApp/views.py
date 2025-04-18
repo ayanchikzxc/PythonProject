@@ -1,6 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import DiaryEntry
 from .forms import DiaryEntryForm
+from django.contrib.auth import login
+from .forms import RegisterForm
+from .serializers import DiaryEntrySerializer
+from rest_framework import viewsets
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = RegisterForm()
+    return render(request, 'DiaryApp/register.html', {'form': form})
 
 def index(request):
     entries = DiaryEntry.objects.all().order_by('-created_at')
@@ -37,3 +52,7 @@ def delete_entry(request, entry_id):
         entry.delete()
         return redirect('index')
     return render(request, 'DiaryApp/delete_confirm.html', {'entry': entry})
+
+class DiaryEntryViewSet(viewsets.ModelViewSet):
+    queryset = DiaryEntry.objects.all()
+    serializer_class = DiaryEntrySerializer
