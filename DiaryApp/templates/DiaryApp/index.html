@@ -1,22 +1,28 @@
 {% extends 'DiaryApp/base.html' %}
 
 {% block content %}
-  <h2>All Diary Entries</h2>
-  <a href="{% url 'create_entry' %}" class="btn btn-primary mb-3">➕ New Entry</a>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📝 All Diary Entries</h2>
+    <a href="{% url 'create_entry' %}" class="btn btn-primary">➕ New Entry</a>
+  </div>
 
-  <ul class="list-group">
-    {% for entry in entries %}
-      <li class="list-group-item">
-        <h5>
-          <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
-          <small class="text-muted">({{ entry.created_at|date:"d M Y H:i" }})</small>
-        </h5>
-        <p><strong>Mood:</strong> {{ entry.get_mood_display }}</p>
-        <p>{{ entry.content|truncatewords:20 }}</p>
-        <a class="btn btn-sm btn-outline-secondary" href="{% url 'entry_detail' entry.id %}">View</a>
-      </li>
-    {% empty %}
-      <li class="list-group-item">No entries found.</li>
-    {% endfor %}
-  </ul>
+  {% if entries %}
+    <div class="list-group">
+      {% for entry in entries %}
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">
+              <a href="{% url 'entry_detail' entry.id %}">{{ entry.title }}</a>
+            </h5>
+            <small>{{ entry.created_at|date:"d M Y H:i" }}</small>
+          </div>
+          <p class="mb-1">{{ entry.content|truncatewords:25 }}</p>
+          <small><strong>Mood:</strong> {{ entry.get_mood_display }}</small><br>
+          <a href="{% url 'entry_detail' entry.id %}" class="btn btn-sm btn-outline-secondary mt-2">View</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">No entries found.</div>
+  {% endif %}
 {% endblock %}
