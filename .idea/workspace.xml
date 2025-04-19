@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="week 11 work" />
+    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="week 11 work">
+      <change afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiaryApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiaryApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745029579618</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="week 11 work">
+      <option name="closed" value="true" />
+      <created>1745029876389</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745029876389</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

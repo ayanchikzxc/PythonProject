@@ -6,23 +6,28 @@ from .forms import RegisterForm
 from .serializers import DiaryEntrySerializer
 from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'Registration successful. You are now logged in.')
             return redirect('index')
     else:
-        form = RegisterForm()
+        form = UserCreationForm()
     return render(request, 'DiaryApp/register.html', {'form': form})
 
+@login_required
 def index(request):
     entries = DiaryEntry.objects.all().order_by('-created_at')
     return render(request, 'DiaryApp/index.html', {'entries': entries})
 
+@login_required
 def entry_detail(request, entry_id):
     entry = get_object_or_404(DiaryEntry, id=entry_id)
     return render(request, 'DiaryApp/entry_detail.html', {'entry': entry})

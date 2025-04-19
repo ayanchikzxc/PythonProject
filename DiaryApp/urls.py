@@ -10,7 +10,6 @@ urlpatterns = [
     path('entry/create/', views.create_entry, name='create_entry'),
     path('entry/<int:entry_id>/edit/', views.edit_entry, name='edit_entry'),
     path('entry/<int:entry_id>/delete/', views.delete_entry, name='delete_entry'),
-
     path('login/', auth_views.LoginView.as_view(template_name='DiaryApp/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('register/', views.register, name='register'),
