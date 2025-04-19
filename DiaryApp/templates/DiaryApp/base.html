@@ -17,8 +17,17 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">📘 Diary App</a>
-    </div>
+  <a class="navbar-brand" href="{% url 'index' %}">📘 Diary App</a>
+  <div class="d-flex">
+    {% if user.is_authenticated %}
+      <span class="navbar-text me-2">Hello, {{ user.username }}!</span>
+      <a class="btn btn-outline-light" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a class="btn btn-outline-light" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</div>
+
 </nav>
 
 <div class="container mt-4">
@@ -32,12 +41,9 @@
     {% endblock %}
 </div>
 
-<!-- Подключаем axios для работы с API -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<!-- Твой кастомный JavaScript -->
 <script>
-    // Пример запроса: получить список записей
     async function fetchEntries() {
         try {
             const response = await axios.get('/api/entries/');
@@ -47,7 +53,6 @@
         }
     }
 
-    // Автозапуск при загрузке страницы
     fetchEntries();
 </script>
 

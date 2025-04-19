@@ -5,6 +5,8 @@ from django.contrib.auth import login
 from .forms import RegisterForm
 from .serializers import DiaryEntrySerializer
 from rest_framework import viewsets
+from django.contrib.auth.decorators import login_required
+
 
 def register(request):
     if request.method == 'POST':
@@ -25,6 +27,7 @@ def entry_detail(request, entry_id):
     entry = get_object_or_404(DiaryEntry, id=entry_id)
     return render(request, 'DiaryApp/entry_detail.html', {'entry': entry})
 
+@login_required
 def create_entry(request):
     if request.method == 'POST':
         form = DiaryEntryForm(request.POST)
@@ -35,6 +38,7 @@ def create_entry(request):
         form = DiaryEntryForm()
     return render(request, 'DiaryApp/entry_form.html', {'form': form})
 
+@login_required
 def edit_entry(request, entry_id):
     entry = get_object_or_404(DiaryEntry, id=entry_id)
     if request.method == 'POST':
@@ -46,6 +50,7 @@ def edit_entry(request, entry_id):
         form = DiaryEntryForm(instance=entry)
     return render(request, 'DiaryApp/entry_form.html', {'form': form})
 
+@login_required
 def delete_entry(request, entry_id):
     entry = get_object_or_404(DiaryEntry, id=entry_id)
     if request.method == 'POST':
