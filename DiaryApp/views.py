@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import DiaryEntry
 from .forms import DiaryEntryForm
 from django.contrib.auth import login
-from .forms import RegisterForm
 from .serializers import DiaryEntrySerializer
 from rest_framework import viewsets
 from django.contrib.auth.decorators import login_required
