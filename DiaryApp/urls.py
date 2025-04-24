@@ -1,8 +1,12 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from rest_framework.routers import DefaultRouter
 from .views import DiaryEntryViewSet
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -15,17 +19,15 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 ]
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
 urlpatterns += [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 router = DefaultRouter()
-router.register(r'api/entries', DiaryEntryViewSet)
+router.register(r'entries', DiaryEntryViewSet, basename='diaryentry')
 
-urlpatterns += router.urls
+from django.urls import include
+urlpatterns += [
+    path('api/', include(router.urls)),
+]
