@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="week 11 work">
+    <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="zzz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745476191836</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="zzz">
+      <option name="closed" value="true" />
+      <created>1745479677780</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1745479677780</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +216,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="week 10 work" />
     <MESSAGE value="week 11 work" />
-    <option name="LAST_COMMIT_MESSAGE" value="week 11 work" />
+    <MESSAGE value="zzz" />
+    <option name="LAST_COMMIT_MESSAGE" value="zzz" />
   </component>
 </project>
