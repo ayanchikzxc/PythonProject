@@ -8,6 +8,9 @@ from django.contrib import messages
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from .serializers import DiaryEntrySerializer
+import logging
+
+logger = logging.getLogger(__name__)
 
 def register(request):
     if request.method == 'POST':
@@ -23,7 +26,10 @@ def register(request):
 
 @login_required
 def index(request):
-    entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
+    if request.user.is_superuser:
+        entries = DiaryEntry.objects.all().order_by('-created_at')
+    else:
+        entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'DiaryApp/index.html', {'entries': entries})
 
 @login_required
@@ -38,12 +44,12 @@ def create_entry(request):
         if form.is_valid():
             entry = form.save(commit=False)
             entry.user = request.user
+            logger.warning(f"▶️ СОХРАНЯЕМ: {entry.title} от {request.user}")
             entry.save()
             return redirect('index')
     else:
         form = DiaryEntryForm()
     return render(request, 'DiaryApp/entry_form.html', {'form': form})
-
 
 @login_required
 def edit_entry(request, entry_id):
@@ -66,6 +72,15 @@ def delete_entry(request, entry_id):
         messages.success(request, 'Запись удалена.')
         return redirect('index')
     return render(request, 'DiaryApp/delete_confirm.html', {'entry': entry})
+
+@login_required
+def diary_list(request):
+    query = request.GET.get('q')
+    entries = DiaryEntry.objects.all()
+    if query:
+        entries = entries.filter(title__icontains=query) | entries.filter(content__icontains=query)
+    return render(request, 'diary/diary_list.html', {'entries': entries})
+
 
 class DiaryEntryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

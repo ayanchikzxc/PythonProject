@@ -44,40 +44,6 @@
     {% endblock %}
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch("/api/entries/")
-            .then(response => response.json())
-            .then(data => {
-                const listGroup = document.querySelector(".list-group");
-                if (!listGroup) return;
-
-                listGroup.innerHTML = "";
-
-                if (data.length === 0) {
-                    listGroup.innerHTML = "<li class='list-group-item'>No entries found.</li>";
-                } else {
-                    data.forEach(entry => {
-                        const listItem = document.createElement("li");
-                        listItem.className = "list-group-item";
-                        listItem.innerHTML = `
-                            <h5>
-                                <a href="/entry/${entry.id}/">${entry.title}</a>
-                                <small class="text-muted">(${new Date(entry.created_at).toLocaleString()})</small>
-                            </h5>
-                            <p><strong>Mood:</strong> ${entry.mood}</p>
-                            <p>${entry.content.substring(0, 100)}...</p>
-                            <a class="btn btn-sm btn-outline-secondary" href="/entry/${entry.id}/">View</a>
-                        `;
-                        listGroup.appendChild(listItem);
-                    });
-                }
-            })
-            .catch(error => console.error("Ошибка при загрузке записей:", error));
-    });
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
