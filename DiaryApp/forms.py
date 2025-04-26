@@ -1,12 +1,12 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django import forms
 from .models import DiaryEntry
 
 class DiaryEntryForm(forms.ModelForm):
     class Meta:
         model = DiaryEntry
-        fields = ['title', 'content', 'mood']
+        fields = ['title', 'content', 'mood', 'image']
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)

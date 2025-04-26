@@ -1,50 +1,69 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import DiaryEntry
-from .forms import DiaryEntryForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.db.models import Q, Count
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-from .serializers import DiaryEntrySerializer
+import json
 import logging
 
+from .models import DiaryEntry
+from .forms import DiaryEntryForm
+from .serializers import DiaryEntrySerializer
+
 logger = logging.getLogger(__name__)
+
 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
-            messages.success(request, 'Вы успешно зарегистрировались!')
-            return redirect('index')
+            # После регистрации - не логиним автоматически
+            messages.success(request, 'Вы успешно зарегистрировались! Теперь войдите в систему.')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'DiaryApp/register.html', {'form': form})
 
 @login_required
 def index(request):
-    if request.user.is_superuser:
-        entries = DiaryEntry.objects.all().order_by('-created_at')
-    else:
-        entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
-    return render(request, 'DiaryApp/index.html', {'entries': entries})
+    query = request.GET.get('q')
+    mood_filter = request.GET.get('mood')
+
+    entries = DiaryEntry.objects.filter(user=request.user)
+
+    if query:
+        entries = entries.filter(Q(title__icontains=query) | Q(content__icontains=query))
+
+    if mood_filter:
+        entries = entries.filter(mood=mood_filter)
+
+    entries = entries.order_by('-created_at')
+    moods = DiaryEntry.MOOD_CHOICES
+
+    return render(request, 'DiaryApp/index.html', {
+        'entries': entries,
+        'moods': moods,
+        'query': query,
+        'selected_mood': mood_filter,
+    })
 
 @login_required
 def entry_detail(request, entry_id):
-    entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
-    return render(request, 'DiaryApp/entry_detail.html', {'entry': entry})
+    entry = get_object_or_404(DiaryEntry, pk=entry_id, user=request.user)
+    content = entry.get_decrypted_content()
+    return render(request, 'DiaryApp/entry_detail.html', {'entry': entry, 'decrypted': content})
 
 @login_required
 def create_entry(request):
     if request.method == 'POST':
-        form = DiaryEntryForm(request.POST)
+        form = DiaryEntryForm(request.POST, request.FILES)
         if form.is_valid():
             entry = form.save(commit=False)
             entry.user = request.user
-            logger.warning(f"▶️ СОХРАНЯЕМ: {entry.title} от {request.user}")
+            logger.info(f"▶️ Новая запись '{entry.title}' от {request.user.username}")
             entry.save()
             return redirect('index')
     else:
@@ -54,14 +73,16 @@ def create_entry(request):
 @login_required
 def edit_entry(request, entry_id):
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
+
     if request.method == 'POST':
-        form = DiaryEntryForm(request.POST, instance=entry)
+        form = DiaryEntryForm(request.POST, request.FILES, instance=entry)
         if form.is_valid():
             form.save()
             messages.success(request, 'Запись обновлена.')
             return redirect('entry_detail', entry_id=entry.id)
     else:
         form = DiaryEntryForm(instance=entry)
+
     return render(request, 'DiaryApp/entry_form.html', {'form': form})
 
 @login_required
@@ -74,13 +95,15 @@ def delete_entry(request, entry_id):
     return render(request, 'DiaryApp/delete_confirm.html', {'entry': entry})
 
 @login_required
-def diary_list(request):
-    query = request.GET.get('q')
-    entries = DiaryEntry.objects.all()
-    if query:
-        entries = entries.filter(title__icontains=query) | entries.filter(content__icontains=query)
-    return render(request, 'diary/diary_list.html', {'entries': entries})
+def mood_chart(request):
+    mood_stats = DiaryEntry.objects.filter(user=request.user).values('mood').annotate(count=Count('id'))
+    labels = [dict(DiaryEntry.MOOD_CHOICES)[m['mood']] for m in mood_stats]
+    counts = [m['count'] for m in mood_stats]
 
+    return render(request, 'DiaryApp/mood_chart.html', {
+        'labels': json.dumps(labels),
+        'counts': json.dumps(counts),
+    })
 
 class DiaryEntryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]

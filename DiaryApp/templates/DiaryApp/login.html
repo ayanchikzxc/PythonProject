@@ -1,9 +1,31 @@
 {% extends 'DiaryApp/base.html' %}
+
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="card p-5" style="width: 100%; max-width: 400px; background-color: rgba(30,30,30,0.95);">
+        <h2 class="text-center text-white mb-4">🔐 Вход в дневник</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+            </div>
+
+            <div class="mb-4">
+                {{ form.password.label_tag }}
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="btn btn-custom w-100 mb-3">Войти</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'register' %}" class="text-info" style="text-decoration: none;">
+                Нет аккаунта? Зарегистрироваться
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,14 +1,40 @@
 {% extends 'DiaryApp/base.html' %}
 
 {% block content %}
-  <h2>{{ form.instance.pk|yesno:"Edit Diary Entry,New Diary Entry" }}</h2>
+<div class="max-w-2xl mx-auto card-glass mt-5">
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Save</button>
-  </form>
+    <h2 class="fw-bold fs-3 mb-4 text-white text-center">
+        {% if form.instance.pk %}✏️ Редактировать запись{% else %}📝 Новая запись{% endif %}
+    </h2>
 
-  <br>
-  <a class="btn btn-light" href="{% url 'index' %}">← Back to all entries</a>
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label class="form-label text-white fw-semibold">{{ form.title.label }}</label>
+            {{ form.title|add_class:"form-control bg-dark text-white border-light" }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white fw-semibold">{{ form.content.label }}</label>
+            {{ form.content|add_class:"form-control bg-dark text-white border-light" }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label text-white fw-semibold">{{ form.mood.label }}</label>
+            {{ form.mood|add_class:"form-select bg-dark text-white border-light" }}
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label text-white fw-semibold">{{ form.image.label }}</label>
+            {{ form.image|add_class:"form-control bg-dark text-white border-light" }}
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-info fw-bold text-dark px-5 py-2">
+                💾 Сохранить
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

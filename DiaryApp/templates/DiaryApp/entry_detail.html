@@ -1,22 +1,32 @@
-{% extends "DiaryApp/base.html" %}
+{% extends 'DiaryApp/base.html' %}
+{% load static %}
 
 {% block content %}
-  <div class="card">
-    <div class="card-body">
-      <h2 class="card-title">{{ entry.title }}</h2>
-      <p class="card-text">{{ entry.content }}</p>
+<div class="max-w-3xl mx-auto card-glass mt-5">
 
-      <p class="text-muted">
-        <strong>Created:</strong> {{ entry.created_at|date:"d M Y H:i" }}<br>
-        <strong>Updated:</strong> {{ entry.updated_at|date:"d M Y H:i" }}<br>
-        <strong>Mood:</strong> {{ entry.get_mood_display }}
-      </p>
+    <h2 class="fw-bold fs-3 mb-3 text-white">{{ entry.title }}</h2>
 
-      <div class="mt-3">
-        <a class="btn btn-warning" href="{% url 'edit_entry' entry.id %}">✏️ Edit</a>
-        <a class="btn btn-danger" href="{% url 'delete_entry' entry.id %}">🗑️ Delete</a>
-        <a class="btn btn-secondary" href="{% url 'index' %}">← Back to All Entries</a>
-      </div>
+    {% if entry.image %}
+        <img src="{{ entry.image.url }}" alt="Изображение"
+             class="img-fluid rounded shadow mb-4"
+             style="max-height: 400px; object-fit: cover;">
+    {% endif %}
+
+    <p class="mb-4 text-light" style="white-space: pre-line;">
+        {{ decrypted }}
+    </p>
+
+    <div class="small text-light mb-4">
+        <p><strong class="text-white">🕒 Создано:</strong> {{ entry.created_at|date:"d M Y H:i" }}</p>
+        <p><strong class="text-white">🛠️ Обновлено:</strong> {{ entry.updated_at|date:"d M Y H:i" }}</p>
+        <p><strong class="text-white">😊 Настроение:</strong> {{ entry.get_mood_display }}</p>
     </div>
-  </div>
+
+    <div class="d-flex gap-2">
+        <a class="btn btn-warning text-dark fw-semibold" href="{% url 'edit_entry' entry.id %}">✏️ Редактировать</a>
+        <a class="btn btn-danger fw-semibold" href="{% url 'delete_entry' entry.id %}">🗑️ Удалить</a>
+        <a class="btn btn-outline-light ms-auto" href="{% url 'index' %}">← Назад</a>
+    </div>
+
+</div>
 {% endblock %}
