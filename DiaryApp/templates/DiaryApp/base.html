@@ -70,7 +70,9 @@
                         <a class="btn btn-custom" href="{% url 'mood_chart' %}">📊 Мои настроения</a>
                     </li>
                     <li class="nav-item me-2">
-                        <span class="navbar-text">👤 {{ user.username }}</span>
+                        <span class="navbar-text fw-semibold text-info border px-2 py-1 rounded bg-dark">
+                                👤 {{ user.username }}
+                                    </span>
                     </li>
                     <li class="nav-item">
                         <form method="post" action="{% url 'logout' %}" class="d-inline">

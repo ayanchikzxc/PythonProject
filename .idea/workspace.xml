@@ -5,26 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d40c543d-1057-4e2a-a12b-355643ad046a" name="Changes" comment="фф">
-      <change afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/mood_chart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/tests" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiaryApp/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiaryApp/templatetags/form_tags.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiaryApp/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiaryApp/tests/test_security.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/entry_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/entry_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/entry_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/entry_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/templates/DiaryApp/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryApp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryProject/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiaryProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiaryProject/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745607680983</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="фф">
+      <option name="closed" value="true" />
+      <created>1745644379820</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745644379820</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
